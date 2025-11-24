@@ -87,9 +87,9 @@ O Power BI se conecta ao **SQL Warehouse** do Databricks usando o conector nativ
 
 | Passo | Ação | Imagem |
 | :--- | :--- | :--- |
-| 1 | Selecionar Obter Dados (**Get Data**) na Home. | ![01_powerBI_Home_GetData] |
-| 2 | Buscar o conector "Databricks". | ![02-get_data_powerBI] |
-| 3 | Informar **Hostname** e **HTTP Path** do SQL Warehouse. | ![03_connection_databricks] |
+| 1 | Selecionar Obter Dados (**Get Data**) na Home. | ![01_powerBI_Home_GetData](assets/01_powerBI_Home_GetData.png) |
+| 2 | Buscar o conector "Databricks". | ![02-get_data_powerBI](assets/02-get_data_powerBI.png) |
+| 3 | Informar **Hostname** e **HTTP Path** do SQL Warehouse. | ![03_connection_databricks](assets/03_connection_databricks.png) |
 
 ### 3.2. Carregamento e Modelagem do Snowflake
 
@@ -97,9 +97,9 @@ As tabelas Gold são carregadas e os relacionamentos do Floco de Neve são estab
 
 | Passo | Ação | Imagem |
 | :--- | :--- | :--- |
-| 4 | Visualização e seleção das tabelas Gold (Fato e Dimensões). | ![04-connection_databricks_tables] |
-| 5 | Seleção das tabelas para o modelo Snowflake (`fact_cost`, `dim_habit_snow`, `dim_smoker_status`, `dim_location_star`). | ![05_loading_tables_fact_and_dim] |
-| 6 | **Modelo Semântico Final (Snowflake):** A Tabela Fato exige duas junções para acessar o status do fumante. | ![06_final_semantic_model] |
+| 4 | Visualização e seleção das tabelas Gold (Fato e Dimensões). | ![04-connection_databricks_tables](assets/04-connection_databricks_tables.png) |
+| 5 | Seleção das tabelas para o modelo Snowflake (`fact_cost`, `dim_habit_snow`, `dim_smoker_status`, `dim_location_star`). | ![05_loading_tables_fact_and_dim](assets/05_loading_tables_fact_and_dim.png) |
+| 6 | **Modelo Semântico Final (Snowflake):** A Tabela Fato exige duas junções para acessar o status do fumante. | ![06_final_semantic_model](assets/06_final_semantic_model.png)|
 
 ### 3.3. Visualização e Interpretação
 
@@ -107,4 +107,4 @@ O **Gráfico de Colunas Agrupadas** foi escolhido para comparar o Custo Médio d
 
 | Visual | Interpretação | Imagem |
 | :--- | :--- | :--- |
-| **Gráfico de Colunas Agrupadas** | Revela que o **Status de Fumante** é o *driver* de custo dominante e primário (colunas 'yes' são 3x a 4x maiores que as 'no'). A variação regional é secundária. | ![07_stacked_column_chart_powerBI] |
+| **Gráfico de Colunas Agrupadas** | Revela que o **Status de Fumante** é o *driver* de custo dominante e primário (colunas 'yes' são 3x a 4x maiores que as 'no'). A variação regional é secundária. | ![07_stacked_column_chart_powerBI](assets/07_stacked_column_chart_powerBI.png) |
