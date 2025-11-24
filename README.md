@@ -38,8 +38,8 @@ Lê o arquivo `insurance.csv` do **Volume** do Unity Catalog e o salva como uma 
 
 ```text
 ✅ Camada BRONZE atualizada com sucesso na Tabela Delta: dev_catalogue.staging_schema.bronze_insurance_costs
-
-### 2.2. Camada Silver: Limpeza e Chaves Substitutas
+````
+###  2.2. Camada Silver: Limpeza e Chaves Substitutas
 
 Padronização de colunas (`charges` para `insurance_cost`) e criação das **Chaves Substitutas (SKs)** essenciais para a modelagem dimensional.
 
@@ -55,7 +55,9 @@ Padronização de colunas (`charges` para `insurance_cost`) e criação das **Ch
 | sex | string | female |
 | region | string | southwest |
 | **insurance_cost** | double | 16884.924 |
+
 PlaintextTotal de registros na SILVER: 1338
+
 ✅ Camada SILVER (Limpa e com SKs) salva com sucesso em: dev_catalogue.staging_schema.silver_insurance_features
 ### 2.3. Camada Gold: Implementação Dimensional
 
@@ -73,6 +75,7 @@ Separação da Tabela Fato e criação das Dimensões para os modelos Estrela e 
 
 ```text
 ✅ FLUXO DE DADOS COMPLETO: BRONZE -> SILVER -> GOLD (STAR/SNOWFLAKE)
+````
 
 ## 3. 📊 Fase de Business Intelligence (Power BI)
 
