@@ -6,6 +6,30 @@ __pycache__/
 # C extensions
 *.so
 
+# Arquivos de Configuração do Databricks
+.databricks/
+.vscode/
+
+# Arquivos de Sistema
+.DS_Store
+*.pyc
+*.swp
+*~
+
+# Artefatos do MLflow e Spark
+mlruns/
+temp/
+tmp/
+.ipynb_checkpoints/
+__pycache__/
+
+# Dados e Resultados (Nunca versionar dados grandes!)
+data/
+datasets/
+*.csv
+*.json
+*.parquet
+
 # Distribution / packaging
 .Python
 build/
