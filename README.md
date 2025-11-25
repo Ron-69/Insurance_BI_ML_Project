@@ -91,6 +91,51 @@ O Power BI se conecta ao **SQL Warehouse** do Databricks usando o conector nativ
 | 2 | Buscar o conector "Databricks". | ![02-get_data_powerBI](assets/02-get_data_powerBI.png) |
 | 3 | Informar **Hostname** e **HTTP Path** do SQL Warehouse. | ![03_connection_databricks](assets/03_connection_databricks.png) |
 
+### 3.1. Validação do Esquema Estrela (Star Schema) via Databricks SQL
+
+O Esquema Estrela foi validado com uma consulta de agregação para garantir a simplicidade e a performance das *queries* analíticas, utilizando apenas duas junções diretas da Tabela Fato para as Dimensões desnormalizadas (`gold_dim_location_star` e `gold_dim_habit_star`).
+
+**Query Executada:**
+
+```sql
+SELECT
+    DL.Region_Name,
+    DH.Smoker_Status,
+    DH.Gender,
+    COUNT(F.Insurance_SK_ID) AS Total_Policies,
+    AVG(F.insurance_cost) AS Average_Cost
+FROM
+    dev_catalogue.staging_schema.gold_fact_insurance_cost AS F
+JOIN
+    dev_catalogue.staging_schema.gold_dim_location_star AS DL
+    ON F.SK_LOCATION = DL.SK_LOCATION
+JOIN
+    dev_catalogue.staging_schema.gold_dim_habit_star AS DH
+    ON F.SK_HABIT = DH.SK_HABIT
+GROUP BY 1, 2, 3
+ORDER BY Average_Cost DESC
+```
+**Resultado da Consulta (Custo Médio de Seguro):**
+
+| Region_Name | Smoker_Status | Gender | Total_Policies | Average_Cost |
+| :--- | :--- | :--- | :--- | :--- |
+| southeast | yes | male | 55 | 36029.84 |
+| southeast | yes | female | 36 | 33034.82 |
+| southwest | yes | male | 37 | 32598.86 |
+| southwest | yes | female | 21 | 31687.99 |
+| northeast | yes | male | 38 | 30926.25 |
+| northwest | yes | male | 29 | 30713.18 |
+| northwest | yes | female | 29 | 29670.82 |
+| northeast | yes | female | 29 | 28032.05 |
+| northeast | no | female | 132 | 9640.43 |
+| northwest | no | female | 135 | 8786.99 |
+| northeast | no | male | 125 | 8664.04 |
+| southeast | no | female | 139 | 8440.21 |
+| northwest | no | male | 132 | 8320.69 |
+| southwest | no | female | 141 | 8234.09 |
+| southwest | no | male | 126 | 7778.91 |
+| southeast | no | male | 134 | 7609.00 |
+
 ### 3.2. Carregamento e Modelagem do Snowflake
 
 As tabelas Gold são carregadas e os relacionamentos do Floco de Neve são estabelecidos:
